@@ -26,3 +26,15 @@ function showProducts() {
 
 
 showProducts();
+
+document.getElementById("addProduct").addEventListener("click", () => {
+    const name = prompt("Введите название товара:");
+
+    if (!name || !name.trim()) {
+        alert("Название товара не введено!");
+        return;
+    }
+
+    products.push(name.trim());
+    showProducts();
+});
