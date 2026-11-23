@@ -1,0 +1,43 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f8f9;
+}
+
+.library {
+    width: 350px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+button {
+    padding: 10px 15px;
+    color: white;
+    background-color: #29882d;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#searchBook {
+    background-color: #0045ff;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    margin: 8px 0;
+}
+
+.found {
+    color: #d62828;
+    font-weight: bold;
+}
