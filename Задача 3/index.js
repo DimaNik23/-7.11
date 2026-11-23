@@ -11,8 +11,11 @@ const products = [
 
 const productList = document.getElementById("productList");
 
+
 function showProducts() {
     productList.innerHTML = "";
+
+    products.sort();
 
     products.forEach(product => {
         const li = document.createElement("li");
@@ -20,5 +23,6 @@ function showProducts() {
         productList.appendChild(li);
     });
 }
+
 
 showProducts();
