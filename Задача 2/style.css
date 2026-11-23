@@ -18,3 +18,16 @@ h2 {
 li {
     margin-bottom: 10px;
 }
+
+button {
+    padding: 10px 15px;
+    background-color: #46954a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #387c3c;
+}
