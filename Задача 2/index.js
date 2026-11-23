@@ -33,3 +33,23 @@ document.getElementById("addHeight").addEventListener("click", () => {
     heights.push(number);
     showHeights(heights);
 });
+
+document.getElementById("filterHeight").addEventListener("click", () => {
+    const minHeight = prompt("Введите минимальный рост:");
+
+    if (!minHeight || !minHeight.trim()) {
+        showHeights(heights);
+        return;
+    }
+
+    const number = Number(minHeight);
+
+    if (isNaN(number)) {
+        showHeights(heights);
+        return;
+    }
+
+    const filteredHeights = heights.filter(height => height >= number);
+
+    showHeights(filteredHeights);
+});

@@ -31,3 +31,11 @@ button {
 button:hover {
     background-color: #387c3c;
 }
+
+#filterHeight {
+    background-color: #e87528;
+}
+
+#filterHeight:hover {
+    background-color: #e87528;
+}
