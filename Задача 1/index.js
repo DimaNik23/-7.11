@@ -1,4 +1,3 @@
-
 const books = [
     "Мастер и Маргарита",
     "Гарри Поттер",
@@ -8,24 +7,19 @@ const books = [
     "Отцы и дети"
 ];
 
-const bookList = document.getElementById("bookList");
+const bookList = document.querySelector(".bookList");
+const addBook = document.querySelector(".addBook");
+const searchBook = document.querySelector(".searchBook");
 
-function showBooks(foundIndex = -1) {
-    bookList.innerHTML = "";
-
-    books.forEach((book, index) => {
-        const li = document.createElement("li");
-        li.textContent = `${index + 1}) ${book}`;
-
-        if (index === foundIndex) {
-            li.classList.add("found");
-        }
-
-        bookList.appendChild(li);
-    });
+function createBook(book, index) {
+    const li = document.createElement("li");
+    li.textContent = `${index + 1}) ${book}`;
+    bookList.appendChild(li);
 }
 
-document.getElementById("addBook").addEventListener("click", () => {
+books.forEach(createBook);
+
+addBook.addEventListener("click", () => {
     const name = prompt("Введите название книги:");
 
     if (!name || !name.trim()) {
@@ -34,21 +28,23 @@ document.getElementById("addBook").addEventListener("click", () => {
     }
 
     books.push(name.trim());
-    showBooks();
+    createBook(name.trim(), books.length - 1);
 });
 
-document.getElementById("searchBook").addEventListener("click", () => {
+searchBook.addEventListener("click", () => {
     const name = prompt("Введите название книги для поиска:");
+    const items = document.querySelectorAll(".bookList li");
+    const search = name ? name.trim().toLowerCase() : "";
 
-    const foundIndex = name && name.trim()
-        ? books.findIndex(book => book.toLowerCase().includes(name.trim().toLowerCase()))
-        : -1;
+    const results = Array.from(items).map((item, index) => {
+        const found = search !== "" && books[index].toLowerCase().includes(search);
 
-    showBooks(foundIndex);
+        item.classList.toggle("found", found);
 
-    if (foundIndex === -1) {
+        return found;
+    });
+
+    if (!results.includes(true)) {
         alert("Книга не найдена!");
     }
 });
-
-showBooks();

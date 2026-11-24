@@ -18,14 +18,14 @@ h2 {
 button {
     padding: 10px 15px;
     color: white;
-    background-color: #29882d;
+    background-color: #46954a;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-#searchBook {
-    background-color: #0045ff;
+.searchBook {
+    background-color: #062b91;
 }
 
 ul {
