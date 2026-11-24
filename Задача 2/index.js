@@ -1,21 +1,25 @@
-
 const heights = [164, 157, 160, 143, 170];
 
-const heightList = document.getElementById("heightList");
+const heightList = document.querySelector(".heightList");
+const addHeight = document.querySelector(".addHeight");
+const filterHeight = document.querySelector(".filterHeight");
+
+let minHeight = 0;
+
+function createHeight(height) {
+    const li = document.createElement("li");
+    li.textContent = height;
+    heightList.appendChild(li);
+}
 
 function showHeights(list) {
     heightList.innerHTML = "";
-
-    list.forEach(height => {
-        const li = document.createElement("li");
-        li.textContent = height;
-        heightList.appendChild(li);
-    });
+    list.forEach(createHeight);
 }
 
 showHeights(heights);
 
-document.getElementById("addHeight").addEventListener("click", () => {
+addHeight.addEventListener("click", () => {
     const height = prompt("Введите рост ученика:");
 
     if (!height || !height.trim()) {
@@ -23,33 +27,38 @@ document.getElementById("addHeight").addEventListener("click", () => {
         return;
     }
 
-    const number = Number(height);
+    const number = +height;
 
-    if (isNaN(number) || number <= 0) {
+    if (!isFinite(number) || number <= 0) {
         alert("Введите правильный рост!");
         return;
     }
 
     heights.push(number);
-    showHeights(heights);
+
+    if (number >= minHeight) {
+        createHeight(number);
+    }
 });
 
-document.getElementById("filterHeight").addEventListener("click", () => {
-    const minHeight = prompt("Введите минимальный рост:");
+filterHeight.addEventListener("click", () => {
+    const value = prompt("Введите минимальный рост:");
 
-    if (!minHeight || !minHeight.trim()) {
+    if (!value || !value.trim()) {
+        minHeight = 0;
         showHeights(heights);
         return;
     }
 
-    const number = Number(minHeight);
+    minHeight = +value;
 
-    if (isNaN(number)) {
+    if (!isFinite(minHeight)) {
+        minHeight = 0;
         showHeights(heights);
         return;
     }
 
-    const filteredHeights = heights.filter(height => height >= number);
+    const filteredHeights = heights.filter(height => height >= minHeight);
 
     showHeights(filteredHeights);
 });
